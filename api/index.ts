@@ -46,13 +46,13 @@ app.post(
       port: 465,
       secure: true,
       auth: {
-        user: process.env.NODEMAILER_USER,
+        user: ,
         pass: process.env.NODEMAILER_PASSWORD,
       },
     });
 
     const mailOptions = {
-      from: email,
+      from: process.env.NODEMAILER_USER,
       to: process.env.MAIL_TO,
       subject: subject,
       text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
