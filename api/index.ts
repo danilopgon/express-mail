@@ -16,6 +16,10 @@ app.use(bodyParser.json());
 
 dotenv.config();
 
+app.get('/', (req: Request, res: Response) => {
+  res.send('Hello World from Vercel!');
+});
+
 app.post('/api/mail', (req: Request, res: Response) => {
   const { name, email, phone, subject, message } = req.body as MailBody;
 
