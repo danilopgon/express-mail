@@ -4,8 +4,7 @@
   "description": "",
   "main": "api/index.ts",
   "scripts": {
-    "start": "ts-node api/index.ts",
-    "build": "tsc"
+    "start": "ts-node api/index.ts"
   },
   "author": "",
   "license": "ISC",
