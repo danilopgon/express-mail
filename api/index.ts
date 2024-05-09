@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 interface MailBody {
   name: string;
@@ -12,6 +13,7 @@ interface MailBody {
 }
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 dotenv.config();
@@ -35,7 +37,7 @@ app.post('/api/mail', (req: Request, res: Response) => {
 
   const mailOptions = {
     from: email,
-    to: process.env.NODEMAILER_USER,
+    to: process.env.MAIL_TO,
     subject: subject,
     text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
   };
