@@ -1,15 +1,23 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+
+interface MailBody {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}
 
 const app = express();
 app.use(bodyParser.json());
 
 dotenv.config();
 
-app.post('/api/mail', (req, res) => {
-  const { name, email, phone, subject, message } = req.body;
+app.post('/api/mail', (req: Request, res: Response) => {
+  const { name, email, phone, subject, message } = req.body as MailBody;
 
   const transporter = nodemailer.createTransport({
     host: 'uk5.fcomet.com',
@@ -28,7 +36,7 @@ app.post('/api/mail', (req, res) => {
     text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
+  transporter.sendMail(mailOptions, (error: any, info: nodemailer.SentMessageInfo) => {
     if (error) {
       return res.status(500).send(error);
     }
@@ -39,4 +47,4 @@ app.post('/api/mail', (req, res) => {
 
 app.listen(3000, () => console.log('Server ready on port 3000.'));
 
-module.exports = app;
+export default app;
