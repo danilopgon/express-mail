@@ -46,7 +46,7 @@ app.post(
       port: 465,
       secure: true,
       auth: {
-        user: process.env.NODEMAILER_USER,
+        user: ,
         pass: process.env.NODEMAILER_PASSWORD,
       },
     });
