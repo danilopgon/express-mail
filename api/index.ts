@@ -52,7 +52,7 @@ app.post(
     });
 
     const mailOptions = {
-      from: email,
+      from: process.env.NODEMAILER_USER,
       to: process.env.MAIL_TO,
       subject: subject,
       text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
